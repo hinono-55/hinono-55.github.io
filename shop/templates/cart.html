@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Cart{% endblock %}
+
+{% block head %}
+<!--タイトルテンプレートの組み込み-->
+{% include "shop_title.html" %}
+{% endblock %}
+
+{% block contents %}
+<h1 class="offset-2 py-5">Thank you for your business, and hope to serve you again soon.</h1>
+
+
+<div class="shopping-cart">
+  <div class="column-labels">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3  offset-1 ">
+        <label class="product-image">IMAGE</label>
+        <label class="product-details">PRODUCT</label>
+        <label class="product-price">PRICE</label>
+    </div>
+  </div>
+
+  {% if object_list %}
+  {% for item in object_list %}
+  <div class="product">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 offset-1">
+            <div class="col">
+                <img src="{{item.image1.url}}" width="60%">
+            </div>
+            <div class="product-details">
+            <div class="product-title"><font size='5'><b>{{item.title}}</b></font></div>
+            <p class="product-description">&nbsp;{{item.comment}}</p>
+            </div>
+            <div class="product-price"><font size='5'><b>＄{{item.price}}</b></font></div>
+        </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+
+  <div class="totals offset-9">
+    <div class="totals-item">
+      <label><font size='4'>Shipping</font></label>
+      <div class="totals-value" id="cart-shipping"><font size='4'>＄5.2</font></div>
+    </div>
+    {% if object_list %}
+    {% for item in object_list %}
+    <div class="totals-item totals-item-total">
+      <label><font size='4'>GranTotald</font></label>
+      <div class="totals-value" id="cart-total"><font size='4'><b><u>＄{{item.price|add:5.2|floatformat:1}}</u></b></font></print></div>
+    </div>
+    {% endfor %}
+    {% endif %}
+  </div>
+      
+</div>
+{% endblock %}

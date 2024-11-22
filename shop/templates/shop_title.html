@@ -1,0 +1,39 @@
+<body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand text-muted" href="{% url 'shop:index' %}">Shop Site</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <!--ナビゲーションボタン-->
+                        {% if user.is_authenticated %}
+                        <!--ログイン中のボタン-->
+                        <li class="nav-item"><a class="nav-link text-muted" href="{% url 'shop:mypage' %}">mypage</a></li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="{% url 'shop:post' %}">shipment</a></li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="{% url 'contactmail:contact' %}">Contact</a></li>
+                        {% else %}
+                        <!--ログインしていない場合のボタン-->
+                        <li class="nav-item"><a class="nav-link text-muted" href="{% url 'accounts:signup' %}">Sign up</a></li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="{% url 'accounts:login' %}">Sign in</a></li>
+                        <li class="nav-item"><a class="nav-link text-muted" href="{% url 'contactmail:contact' %}">Contact</a></li>
+                        {% endif %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-muted dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Sort by</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'shop:index2' %}">In descending order of the price</a></li>
+                                <li><a class="dropdown-item" href="{% url 'shop:index3' %}">In asending order of the price</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <button class="btn btn-outline-light" type="submit" href="#!">
+                            <i class="bi-cart-fill me-1 text-muted"></i>
+                            Cart
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">1</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+</body>
